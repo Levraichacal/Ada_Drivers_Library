@@ -50,7 +50,6 @@ with STM32.ADC;     use STM32.ADC;
 with STM32.USARTs;  use STM32.USARTs;
 with STM32.SPI;     use STM32.SPI;
 with STM32.Timers;  use STM32.Timers;
-with STM32.DAC;     use STM32.DAC;
 with STM32.I2C;     use STM32.I2C;
 
 package STM32.Device is

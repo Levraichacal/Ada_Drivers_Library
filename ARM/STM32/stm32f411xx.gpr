@@ -8,8 +8,8 @@ library project STM32F411xx is
 
    for Library_Name use "stm32f411";
    for Library_Kind use "static";
-   for Library_Dir use "lib/stm32f411xx/" & Config.RTS & "/" & Config.BUILD;
-   for Object_Dir use "obj/stm32f411xx/" & Config.RTS & "/" & Config.BUILD;
+   for Library_Dir use "lib/stm32f411xx/" & Config.RTS;
+   for Object_Dir use "obj/stm32f411xx/" & Config.RTS;
 
    for Source_Dirs use Project'Source_Dirs &
      ("../cortex_m",
@@ -19,7 +19,10 @@ library project STM32F411xx is
       "svd/stm32f411xx",
       "devices/stm32f411xx",
       "drivers/i2c_stm32f4",
-      "drivers/uart_stm32f4");
+      "drivers/usart_stm32f411",
+      "drivers/timer_stm32f411",
+      "drivers/pwm_stm32f411",
+      "drivers/adc_stm32f411");
 
    package Compiler renames Config.Compiler;
    package Builder renames Config.Builder;

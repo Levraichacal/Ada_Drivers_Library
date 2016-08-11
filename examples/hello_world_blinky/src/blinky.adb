@@ -53,7 +53,7 @@ with Ada.Real_Time; use Ada.Real_Time;
 
 procedure Blinky is
 
-   Period : constant Time_Span := Milliseconds (200);  -- arbitrary
+   Period : constant Time_Span := Milliseconds (1000);  -- arbitrary
 
    Next_Release : Time := Clock;
 

@@ -2156,10 +2156,6 @@ package STM32_SVD.TIM is
    TIM1_Periph : aliased TIM1_Peripheral
      with Import, Address => TIM1_Base;
 
-   --  Advanced-timers
-   TIM8_Periph : aliased TIM1_Peripheral
-     with Import, Address => TIM8_Base;
-
    type TIM9_Disc is
      (
       Output,

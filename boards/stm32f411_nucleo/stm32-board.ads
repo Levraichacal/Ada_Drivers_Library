@@ -1,6 +1,6 @@
 ------------------------------------------------------------------------------
 --                                                                          --
---                    Copyright (C) 2015, AdaCore                           --
+--                 Copyright (C) 2015-2016, AdaCore                         --
 --                                                                          --
 --  Redistribution and use in source and binary forms, with or without      --
 --  modification, are permitted provided that the following conditions are  --
@@ -27,58 +27,65 @@
 --   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE  --
 --   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.   --
 --                                                                          --
+--                                                                          --
+--  This file is based on:                                                  --
+--                                                                          --
+--   @file    stm32f4_discovery.h                                           --
+--   @author  MCD Application Team                                          --
+--   @version V1.1.0                                                        --
+--   @date    19-June-2014                                                  --
+--   @brief   This file contains definitions for STM32F4-Discovery Kit      --
+--            LEDs, push-buttons hardware resources.                        --
+--                                                                          --
+--   COPYRIGHT(c) 2014 STMicroelectronics                                   --
 ------------------------------------------------------------------------------
-pragma Restrictions (No_Elaboration_Code);
 
-package STM32.RCC is
+--  This file provides declarations for devices on the STM32F4 Discovery kits
+--  manufactured by ST Microelectronics.
 
---     type RCC_System_Clocks is record
---        SYSCLK  : Word;
---        HCLK    : Word;
---        PCLK1   : Word;
---        PCLK2   : Word;
---        TIMCLK1 : Word;
---        TIMCLK2 : Word;
---     end record;
---
---     function System_Clock_Frequencies return RCC_System_Clocks;
+with STM32.Device;  use STM32.Device;
 
-   --  Part below is obsolete and should be moved to the corresponding driver.
+with STM32.GPIO;    use STM32.GPIO;
 
-   procedure CRC_Clock_Enable with Inline;
 
---     procedure CCMDATARAMEN_Clock_Enable with Inline;
---     procedure DMA2D_Clock_Enable with Inline;
-   procedure WWDG_Clock_Enable with Inline;
+with Ada.Interrupts.Names; use Ada.Interrupts;
 
---     procedure SDIO_Clock_Enable with Inline;
-   procedure SYSCFG_Clock_Enable with Inline;
 
-   procedure AHB1_Force_Reset with Inline;
-   procedure AHB1_Release_Reset with Inline;
-   procedure AHB2_Force_Reset with Inline;
-   procedure AHB2_Release_Reset with Inline;
-   procedure APB1_Force_Reset with Inline;
-   procedure APB1_Release_Reset with Inline;
-   procedure APB2_Force_Reset with Inline;
-   procedure APB2_Release_Reset with Inline;
+package STM32.Board is
+   pragma Elaborate_Body;
 
-   procedure CRC_Force_Reset with Inline;
-   procedure CRC_Release_Reset with Inline;
+   subtype User_LED is GPIO_Point;
 
---     procedure DMA2D_Force_Reset with Inline;
---     procedure DMA2D_Release_Reset with Inline;
+   Green  : User_LED renames PC12;
+   Orange : User_LED renames PC13;
+   Red    : User_LED renames PC10;
+   Blue   : User_LED renames PC11;
 
-   procedure OTGFS_Force_Reset with Inline;
-   procedure OTGFS_Release_Reset with Inline;
+   All_LEDs : GPIO_Points := Green & Orange & Red & Blue;
+   LCH_LED  : GPIO_Point renames Red;
 
-   procedure WWDG_Force_Reset with Inline;
-   procedure WWDG_Release_Reset with Inline;
+   procedure Initialize_LEDs;
+   --  MUST be called prior to any use of the LEDs
 
---     procedure SDIO_Force_Reset with Inline;
---     procedure SDIO_Release_Reset with Inline;
+   procedure Turn_On (This : in out User_LED)
+     renames STM32.GPIO.Set;
+   procedure Turn_Off (This : in out User_LED)
+     renames STM32.GPIO.Clear;
 
-   procedure SYSCFG_Force_Reset with Inline;
-   procedure SYSCFG_Release_Reset with Inline;
+   procedure All_LEDs_Off with Inline;
+   procedure All_LEDs_On  with Inline;
+   procedure Toggle_LEDs (These : in out GPIO_Points)
+     renames STM32.GPIO.Toggle;
 
-end STM32.RCC;
+
+   --  User button
+
+   User_Button_Point     : GPIO_Point renames PA0;
+   User_Button_Interrupt : constant Interrupt_ID := Names.EXTI0_Interrupt;
+
+   procedure Configure_User_Button_GPIO;
+   --  Configures the GPIO port/pin for the blue user button. Sufficient
+   --  for polling the button, and necessary for having the button generate
+   --  interrupts.
+
+end STM32.Board;

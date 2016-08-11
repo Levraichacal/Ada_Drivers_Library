@@ -115,7 +115,7 @@ package body STM32.Device is
          RCC_Periph.AHB1RSTR.GPIODRST := False;
       elsif This'Address = GPIOE_Base then
          RCC_Periph.AHB1RSTR.GPIOERST := True;
-         RCC_Periph.AHB1RSTR.GPIOERST := False
+         RCC_Periph.AHB1RSTR.GPIOERST := False;
       elsif This'Address = GPIOH_Base then
          RCC_Periph.AHB1RSTR.GPIOHRST := True;
          RCC_Periph.AHB1RSTR.GPIOHRST := False;

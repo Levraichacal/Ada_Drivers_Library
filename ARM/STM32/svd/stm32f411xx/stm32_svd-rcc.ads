@@ -78,132 +78,156 @@ package STM32_SVD.RCC is
    -- PLLCFGR_Register --
    ----------------------
 
-   ------------------
-   -- PLLCFGR.PLLM --
-   ------------------
+--     ------------------
+--     -- PLLCFGR.PLLM --
+--     ------------------
+--
+--     --  PLLCFGR_PLLM array
+--     type PLLCFGR_PLLM_Field_Array is array (0 .. 5) of Boolean
+--       with Component_Size => 1, Size => 6;
+--
+--     --  Type definition for PLLCFGR_PLLM
+--     type PLLCFGR_PLLM_Field
+--       (As_Array : Boolean := False)
+--     is record
+--        case As_Array is
+--           when False =>
+--              --  PLLM as a value
+--              Val : HAL.UInt6;
+--           when True =>
+--              --  PLLM as an array
+--              Arr : PLLCFGR_PLLM_Field_Array;
+--        end case;
+--     end record
+--       with Unchecked_Union, Size => 6;
+--
+--     for PLLCFGR_PLLM_Field use record
+--        Val at 0 range 0 .. 5;
+--        Arr at 0 range 0 .. 5;
+--     end record;
+--
+--     ------------------
+--     -- PLLCFGR.PLLN --
+--     ------------------
+--
+--     --  PLLCFGR_PLLN array
+--     type PLLCFGR_PLLN_Field_Array is array (0 .. 8) of Boolean
+--       with Component_Size => 1, Size => 9;
+--
+--     --  Type definition for PLLCFGR_PLLN
+--     type PLLCFGR_PLLN_Field
+--       (As_Array : Boolean := False)
+--     is record
+--        case As_Array is
+--           when False =>
+--              --  PLLN as a value
+--              Val : HAL.UInt9;
+--           when True =>
+--              --  PLLN as an array
+--              Arr : PLLCFGR_PLLN_Field_Array;
+--        end case;
+--     end record
+--       with Unchecked_Union, Size => 9;
+--
+--     for PLLCFGR_PLLN_Field use record
+--        Val at 0 range 0 .. 8;
+--        Arr at 0 range 0 .. 8;
+--     end record;
+--
+--     ------------------
+--     -- PLLCFGR.PLLP --
+--     ------------------
+--
+--     --  PLLCFGR_PLLP array
+--     type PLLCFGR_PLLP_Field_Array is array (0 .. 1) of Boolean
+--       with Component_Size => 1, Size => 2;
+--
+--     --  Type definition for PLLCFGR_PLLP
+--     type PLLCFGR_PLLP_Field
+--       (As_Array : Boolean := False)
+--     is record
+--        case As_Array is
+--           when False =>
+--              --  PLLP as a value
+--              Val : HAL.UInt2;
+--           when True =>
+--              --  PLLP as an array
+--              Arr : PLLCFGR_PLLP_Field_Array;
+--        end case;
+--     end record
+--       with Unchecked_Union, Size => 2;
+--
+--     for PLLCFGR_PLLP_Field use record
+--        Val at 0 range 0 .. 1;
+--        Arr at 0 range 0 .. 1;
+--     end record;
+--
+--     ------------------
+--     -- PLLCFGR.PLLQ --
+--     ------------------
+--
+--     --  PLLCFGR_PLLQ array
+--     type PLLCFGR_PLLQ_Field_Array is array (0 .. 3) of Boolean
+--       with Component_Size => 1, Size => 4;
+--
+--     --  Type definition for PLLCFGR_PLLQ
+--     type PLLCFGR_PLLQ_Field
+--       (As_Array : Boolean := False)
+--     is record
+--        case As_Array is
+--           when False =>
+--              --  PLLQ as a value
+--              Val : HAL.UInt4;
+--           when True =>
+--              --  PLLQ as an array
+--              Arr : PLLCFGR_PLLQ_Field_Array;
+--        end case;
+--     end record
+--       with Unchecked_Union, Size => 4;
+--
+--     for PLLCFGR_PLLQ_Field use record
+--        Val at 0 range 0 .. 3;
+--        Arr at 0 range 0 .. 3;
+--     end record;
 
-   --  PLLCFGR_PLLM array
-   type PLLCFGR_PLLM_Field_Array is array (0 .. 5) of Boolean
-     with Component_Size => 1, Size => 6;
-
-   --  Type definition for PLLCFGR_PLLM
-   type PLLCFGR_PLLM_Field
-     (As_Array : Boolean := False)
-   is record
-      case As_Array is
-         when False =>
-            --  PLLM as a value
-            Val : HAL.UInt6;
-         when True =>
-            --  PLLM as an array
-            Arr : PLLCFGR_PLLM_Field_Array;
-      end case;
-   end record
-     with Unchecked_Union, Size => 6;
-
-   for PLLCFGR_PLLM_Field use record
-      Val at 0 range 0 .. 5;
-      Arr at 0 range 0 .. 5;
-   end record;
-
-   ------------------
-   -- PLLCFGR.PLLN --
-   ------------------
-
-   --  PLLCFGR_PLLN array
-   type PLLCFGR_PLLN_Field_Array is array (0 .. 8) of Boolean
-     with Component_Size => 1, Size => 9;
-
-   --  Type definition for PLLCFGR_PLLN
-   type PLLCFGR_PLLN_Field
-     (As_Array : Boolean := False)
-   is record
-      case As_Array is
-         when False =>
-            --  PLLN as a value
-            Val : HAL.UInt9;
-         when True =>
-            --  PLLN as an array
-            Arr : PLLCFGR_PLLN_Field_Array;
-      end case;
-   end record
-     with Unchecked_Union, Size => 9;
-
-   for PLLCFGR_PLLN_Field use record
-      Val at 0 range 0 .. 8;
-      Arr at 0 range 0 .. 8;
-   end record;
-
-   ------------------
-   -- PLLCFGR.PLLP --
-   ------------------
-
-   --  PLLCFGR_PLLP array
-   type PLLCFGR_PLLP_Field_Array is array (0 .. 1) of Boolean
-     with Component_Size => 1, Size => 2;
-
-   --  Type definition for PLLCFGR_PLLP
-   type PLLCFGR_PLLP_Field
-     (As_Array : Boolean := False)
-   is record
-      case As_Array is
-         when False =>
-            --  PLLP as a value
-            Val : HAL.UInt2;
-         when True =>
-            --  PLLP as an array
-            Arr : PLLCFGR_PLLP_Field_Array;
-      end case;
-   end record
-     with Unchecked_Union, Size => 2;
-
-   for PLLCFGR_PLLP_Field use record
-      Val at 0 range 0 .. 1;
-      Arr at 0 range 0 .. 1;
-   end record;
-
-   ------------------
-   -- PLLCFGR.PLLQ --
-   ------------------
-
-   --  PLLCFGR_PLLQ array
-   type PLLCFGR_PLLQ_Field_Array is array (0 .. 3) of Boolean
-     with Component_Size => 1, Size => 4;
-
-   --  Type definition for PLLCFGR_PLLQ
-   type PLLCFGR_PLLQ_Field
-     (As_Array : Boolean := False)
-   is record
-      case As_Array is
-         when False =>
-            --  PLLQ as a value
-            Val : HAL.UInt4;
-         when True =>
-            --  PLLQ as an array
-            Arr : PLLCFGR_PLLQ_Field_Array;
-      end case;
-   end record
-     with Unchecked_Union, Size => 4;
-
-   for PLLCFGR_PLLQ_Field use record
-      Val at 0 range 0 .. 3;
-      Arr at 0 range 0 .. 3;
-   end record;
+   subtype PLLCFGR_PLLM_Field is HAL.UInt6;
+   subtype PLLCFGR_PLLN_Field is HAL.UInt9;
+   subtype PLLCFGR_PLLP_Field is HAL.UInt2;
+   subtype PLLCFGR_PLLQ_Field is HAL.UInt4;
 
    --  PLL configuration register
    type PLLCFGR_Register is record
       --  Division factor for the main PLL (PLL) and audio PLL (PLLI2S) input
       --  clock
-      PLLM           : PLLCFGR_PLLM_Field :=
-                        (As_Array => False, Val => 16#0#);
+--        PLLM           : PLLCFGR_PLLM_Field :=
+--                          (As_Array => False, Val => 16#0#);
+--        --  Main PLL (PLL) multiplication factor for VCO
+--        PLLN           : PLLCFGR_PLLN_Field :=
+--                          (As_Array => False, Val => 16#0#);
+--        --  unspecified
+--        Reserved_15_15 : HAL.Bit := 16#0#;
+--        --  Main PLL (PLL) division factor for main system clock
+--        PLLP           : PLLCFGR_PLLP_Field :=
+--                          (As_Array => False, Val => 16#0#);
+--        --  unspecified
+--        Reserved_18_21 : HAL.UInt4 := 16#0#;
+--        --  Main PLL(PLL) and audio PLL (PLLI2S) entry clock source
+--        PLLSRC         : Boolean := False;
+--        --  unspecified
+--        Reserved_23_23 : HAL.Bit := 16#0#;
+--        --  Main PLL (PLL) division factor for USB OTG FS, SDIO and random number
+--        --  generator clocks
+--        PLLQ           : PLLCFGR_PLLQ_Field :=
+--                          (As_Array => False, Val => 16#0#);
+      --  Division factor for the main PLL (PLL) and audio PLL (PLLI2S) input
+      --  clock
+      PLLM           : PLLCFGR_PLLM_Field := 16#10#;
       --  Main PLL (PLL) multiplication factor for VCO
-      PLLN           : PLLCFGR_PLLN_Field :=
-                        (As_Array => False, Val => 16#0#);
+      PLLN           : PLLCFGR_PLLN_Field := 16#C0#;
       --  unspecified
       Reserved_15_15 : HAL.Bit := 16#0#;
       --  Main PLL (PLL) division factor for main system clock
-      PLLP           : PLLCFGR_PLLP_Field :=
-                        (As_Array => False, Val => 16#0#);
+      PLLP           : PLLCFGR_PLLP_Field := 16#0#;
       --  unspecified
       Reserved_18_21 : HAL.UInt4 := 16#0#;
       --  Main PLL(PLL) and audio PLL (PLLI2S) entry clock source
@@ -212,8 +236,7 @@ package STM32_SVD.RCC is
       Reserved_23_23 : HAL.Bit := 16#0#;
       --  Main PLL (PLL) division factor for USB OTG FS, SDIO and random number
       --  generator clocks
-      PLLQ           : PLLCFGR_PLLQ_Field :=
-                        (As_Array => False, Val => 16#0#);
+      PLLQ           : PLLCFGR_PLLQ_Field := 16#4#;
       --  unspecified
       Reserved_28_31 : HAL.UInt4 := 16#2#;
    end record
@@ -241,57 +264,58 @@ package STM32_SVD.RCC is
    -------------
 
    --  CFGR_SW array
-   type CFGR_SW_Field_Array is array (0 .. 1) of Boolean
-     with Component_Size => 1, Size => 2;
+--     type CFGR_SW_Field_Array is array (0 .. 1) of Boolean
+--       with Component_Size => 1, Size => 2;
+--
+--     --  Type definition for CFGR_SW
+--     type CFGR_SW_Field
+--       (As_Array : Boolean := False)
+--     is record
+--        case As_Array is
+--           when False =>
+--              --  SW as a value
+--              Val : HAL.UInt2;
+--           when True =>
+--              --  SW as an array
+--              Arr : CFGR_SW_Field_Array;
+--        end case;
+--     end record
+--       with Unchecked_Union, Size => 2;
+--
+--     for CFGR_SW_Field use record
+--        Val at 0 range 0 .. 1;
+--        Arr at 0 range 0 .. 1;
+--     end record;
 
-   --  Type definition for CFGR_SW
-   type CFGR_SW_Field
-     (As_Array : Boolean := False)
-   is record
-      case As_Array is
-         when False =>
-            --  SW as a value
-            Val : HAL.UInt2;
-         when True =>
-            --  SW as an array
-            Arr : CFGR_SW_Field_Array;
-      end case;
-   end record
-     with Unchecked_Union, Size => 2;
-
-   for CFGR_SW_Field use record
-      Val at 0 range 0 .. 1;
-      Arr at 0 range 0 .. 1;
-   end record;
-
+   subtype CFGR_SW_Field is HAL.UInt2;
    --------------
    -- CFGR.SWS --
    --------------
 
    --  CFGR_SWS array
-   type CFGR_SWS_Field_Array is array (0 .. 1) of Boolean
-     with Component_Size => 1, Size => 2;
+--     type CFGR_SWS_Field_Array is array (0 .. 1) of Boolean
+--       with Component_Size => 1, Size => 2;
 
    --  Type definition for CFGR_SWS
-   type CFGR_SWS_Field
-     (As_Array : Boolean := False)
-   is record
-      case As_Array is
-         when False =>
-            --  SWS as a value
-            Val : HAL.UInt2;
-         when True =>
-            --  SWS as an array
-            Arr : CFGR_SWS_Field_Array;
-      end case;
-   end record
-     with Unchecked_Union, Size => 2;
-
-   for CFGR_SWS_Field use record
-      Val at 0 range 0 .. 1;
-      Arr at 0 range 0 .. 1;
-   end record;
-
+--     type CFGR_SWS_Field
+--       (As_Array : Boolean := False)
+--     is record
+--        case As_Array is
+--           when False =>
+--              --  SWS as a value
+--              Val : HAL.UInt2;
+--           when True =>
+--              --  SWS as an array
+--              Arr : CFGR_SWS_Field_Array;
+--        end case;
+--     end record
+--       with Unchecked_Union, Size => 2;
+--
+--     for CFGR_SWS_Field use record
+--        Val at 0 range 0 .. 1;
+--        Arr at 0 range 0 .. 1;
+--     end record;
+   subtype CFGR_SWS_Field is HAL.UInt2;
    subtype CFGR_HPRE_Field is HAL.UInt4;
 
    ---------------
@@ -334,9 +358,9 @@ package STM32_SVD.RCC is
    --  clock configuration register
    type CFGR_Register is record
       --  System clock switch
-      SW           : CFGR_SW_Field := (As_Array => False, Val => 16#0#);
+      SW           : CFGR_SW_Field := 16#0#;
       --  Read-only. System clock switch status
-      SWS          : CFGR_SWS_Field := (As_Array => False, Val => 16#0#);
+      SWS          : CFGR_SWS_Field := 16#0#;
       --  AHB prescaler
       HPRE         : CFGR_HPRE_Field := 16#0#;
       --  unspecified
@@ -623,8 +647,8 @@ package STM32_SVD.RCC is
       SDIORST        : Boolean := False;
       --  SPI 1 reset
       SPI1RST        : Boolean := False;
-      --  unspecified
-      Reserved_13_13 : HAL.Bit := 16#0#;
+      --  SPI 4 reset
+      SPI4RST        : Boolean := False;
       --  System configuration controller reset
       SYSCFGRST      : Boolean := False;
       --  unspecified
@@ -636,7 +660,11 @@ package STM32_SVD.RCC is
       --  TIM11 reset
       TIM11RST       : Boolean := False;
       --  unspecified
-      Reserved_19_31 : HAL.UInt13 := 16#0#;
+      Reserved_19_19 : HAL.Bit := 16#0#;
+      --  SPI 5 reset
+      SPI5RST        : Boolean := False;
+      --  unspecified
+      Reserved_21_31 : HAL.UInt11 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -651,13 +679,15 @@ package STM32_SVD.RCC is
       Reserved_9_10  at 0 range 9 .. 10;
       SDIORST        at 0 range 11 .. 11;
       SPI1RST        at 0 range 12 .. 12;
-      Reserved_13_13 at 0 range 13 .. 13;
+      SPI4RST        at 0 range 13 .. 13;
       SYSCFGRST      at 0 range 14 .. 14;
       Reserved_15_15 at 0 range 15 .. 15;
       TIM9RST        at 0 range 16 .. 16;
       TIM10RST       at 0 range 17 .. 17;
       TIM11RST       at 0 range 18 .. 18;
-      Reserved_19_31 at 0 range 19 .. 31;
+      Reserved_19_19 at 0 range 19 .. 19;
+      SPI5RST        at 0 range 20 .. 20;
+      Reserved_21_31 at 0 range 21 .. 31;
    end record;
 
    ----------------------
@@ -838,7 +868,11 @@ package STM32_SVD.RCC is
       --  TIM11 clock enable
       TIM11EN        : Boolean := False;
       --  unspecified
-      Reserved_19_31 : HAL.UInt13 := 16#0#;
+      Reserved_19_19 : HAL.Bit := 16#0#;
+      --  SPI5 clock enable
+      SPI5EN         : Boolean := False;
+      --  unspecified
+      Reserved_21_31 : HAL.UInt11 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -859,7 +893,9 @@ package STM32_SVD.RCC is
       TIM9EN         at 0 range 16 .. 16;
       TIM10EN        at 0 range 17 .. 17;
       TIM11EN        at 0 range 18 .. 18;
-      Reserved_19_31 at 0 range 19 .. 31;
+      Reserved_19_19 at 0 range 19 .. 19;
+      SPI5EN         at 0 range 20 .. 20;
+      Reserved_21_31 at 0 range 21 .. 31;
    end record;
 
    ------------------------

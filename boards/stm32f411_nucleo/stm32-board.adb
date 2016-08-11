@@ -27,58 +27,73 @@
 --   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE  --
 --   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.   --
 --                                                                          --
+--                                                                          --
+--  This file is based on:                                                  --
+--                                                                          --
+--   @file    stm32f4_discovery.c                                           --
+--   @author  MCD Application Team                                          --
+--   @version V1.1.0                                                        --
+--   @date    19-June-2014                                                  --
+--   @brief  This file provides set of firmware functions to manage Leds    --
+--           and push-button available on STM32F42-Discovery Kit from       --
+--           STMicroelectronics.                                            --
+--                                                                          --
+--   COPYRIGHT(c) 2014 STMicroelectronics                                   --
 ------------------------------------------------------------------------------
-pragma Restrictions (No_Elaboration_Code);
 
-package STM32.RCC is
 
---     type RCC_System_Clocks is record
---        SYSCLK  : Word;
---        HCLK    : Word;
---        PCLK1   : Word;
---        PCLK2   : Word;
---        TIMCLK1 : Word;
---        TIMCLK2 : Word;
---     end record;
---
---     function System_Clock_Frequencies return RCC_System_Clocks;
+package body STM32.Board is
 
-   --  Part below is obsolete and should be moved to the corresponding driver.
+   ------------------
+   -- All_LEDs_Off --
+   ------------------
 
-   procedure CRC_Clock_Enable with Inline;
+   procedure All_LEDs_Off is
+   begin
+      Clear (All_LEDs);
+   end All_LEDs_Off;
 
---     procedure CCMDATARAMEN_Clock_Enable with Inline;
---     procedure DMA2D_Clock_Enable with Inline;
-   procedure WWDG_Clock_Enable with Inline;
+   -----------------
+   -- All_LEDs_On --
+   -----------------
 
---     procedure SDIO_Clock_Enable with Inline;
-   procedure SYSCFG_Clock_Enable with Inline;
+   procedure All_LEDs_On is
+   begin
+      Set (All_LEDs);
+   end All_LEDs_On;
 
-   procedure AHB1_Force_Reset with Inline;
-   procedure AHB1_Release_Reset with Inline;
-   procedure AHB2_Force_Reset with Inline;
-   procedure AHB2_Release_Reset with Inline;
-   procedure APB1_Force_Reset with Inline;
-   procedure APB1_Release_Reset with Inline;
-   procedure APB2_Force_Reset with Inline;
-   procedure APB2_Release_Reset with Inline;
+   ---------------------
+   -- Initialize_LEDs --
+   ---------------------
 
-   procedure CRC_Force_Reset with Inline;
-   procedure CRC_Release_Reset with Inline;
+   procedure Initialize_LEDs is
+      Configuration : GPIO_Port_Configuration;
+   begin
+      Enable_Clock (All_LEDs);
 
---     procedure DMA2D_Force_Reset with Inline;
---     procedure DMA2D_Release_Reset with Inline;
+      Configuration.Mode        := Mode_Out;
+      Configuration.Output_Type := Push_Pull;
+      Configuration.Speed       := Speed_100MHz;
+      Configuration.Resistors   := Floating;
+      Configure_IO (All_LEDs,
+                    Config => Configuration);
+   end Initialize_LEDs;
 
-   procedure OTGFS_Force_Reset with Inline;
-   procedure OTGFS_Release_Reset with Inline;
+   --------------------------------
+   -- Configure_User_Button_GPIO --
+   --------------------------------
 
-   procedure WWDG_Force_Reset with Inline;
-   procedure WWDG_Release_Reset with Inline;
+   procedure Configure_User_Button_GPIO is
+      Config : GPIO_Port_Configuration;
+   begin
+      Enable_Clock (User_Button_Point);
 
---     procedure SDIO_Force_Reset with Inline;
---     procedure SDIO_Release_Reset with Inline;
+      Config.Mode := Mode_In;
+      Config.Resistors := Floating;
 
-   procedure SYSCFG_Force_Reset with Inline;
-   procedure SYSCFG_Release_Reset with Inline;
+      Configure_IO (User_Button_Point, Config);
+   end Configure_User_Button_GPIO;
 
-end STM32.RCC;
+
+
+end STM32.Board;

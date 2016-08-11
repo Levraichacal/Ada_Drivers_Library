@@ -47,8 +47,6 @@ package STM32_SVD is
      System'To_Address (16#40013800#);
    TIM1_Base : constant System.Address :=
      System'To_Address (16#40010000#);
-   TIM8_Base : constant System.Address :=
-     System'To_Address (16#40010400#);
    TIM10_Base : constant System.Address :=
      System'To_Address (16#40014400#);
    TIM11_Base : constant System.Address :=

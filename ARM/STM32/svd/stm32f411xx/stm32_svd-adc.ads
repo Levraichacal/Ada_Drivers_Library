@@ -302,6 +302,106 @@ package STM32_SVD.ADC is
    end record;
 
    --------------------
+   -- SMPR1_Register --
+   --------------------
+
+   ---------------
+   -- SMPR1.SMP --
+   ---------------
+
+   --  SMPR1_SMP array element
+   subtype SMPR1_SMP_Element is HAL.UInt3;
+
+   --  SMPR1_SMP array
+   type SMPR1_SMP_Field_Array is array (10 .. 18) of SMPR1_SMP_Element
+     with Component_Size => 3, Size => 27;
+
+   --  Type definition for SMPR1_SMP
+   type SMPR1_SMP_Field
+     (As_Array : Boolean := False)
+   is record
+      case As_Array is
+         when False =>
+            --  SMP as a value
+            Val : HAL.UInt27;
+         when True =>
+            --  SMP as an array
+            Arr : SMPR1_SMP_Field_Array;
+      end case;
+   end record
+     with Unchecked_Union, Size => 27;
+
+   for SMPR1_SMP_Field use record
+      Val at 0 range 0 .. 26;
+      Arr at 0 range 0 .. 26;
+   end record;
+
+   --  sample time register 1
+   type SMPR1_Register is record
+      --  Sample time bits
+      SMP            : SMPR1_SMP_Field := (As_Array => False, Val => 16#0#);
+      --  unspecified
+      Reserved_27_31 : HAL.UInt5 := 16#0#;
+   end record
+     with Volatile_Full_Access, Size => 32,
+          Bit_Order => System.Low_Order_First;
+
+   for SMPR1_Register use record
+      SMP            at 0 range 0 .. 26;
+      Reserved_27_31 at 0 range 27 .. 31;
+   end record;
+
+   --------------------
+   -- SMPR2_Register --
+   --------------------
+
+   ---------------
+   -- SMPR2.SMP --
+   ---------------
+
+   --  SMPR2_SMP array element
+   subtype SMPR2_SMP_Element is HAL.UInt3;
+
+   --  SMPR2_SMP array
+   type SMPR2_SMP_Field_Array is array (0 .. 9) of SMPR2_SMP_Element
+     with Component_Size => 3, Size => 30;
+
+   --  Type definition for SMPR2_SMP
+   type SMPR2_SMP_Field
+     (As_Array : Boolean := False)
+   is record
+      case As_Array is
+         when False =>
+            --  SMP as a value
+            Val : HAL.UInt30;
+         when True =>
+            --  SMP as an array
+            Arr : SMPR2_SMP_Field_Array;
+      end case;
+   end record
+     with Unchecked_Union, Size => 30;
+
+   for SMPR2_SMP_Field use record
+      Val at 0 range 0 .. 29;
+      Arr at 0 range 0 .. 29;
+   end record;
+
+   --  sample time register 2
+   type SMPR2_Register is record
+      --  Sample time bits
+      SMP            : SMPR2_SMP_Field := (As_Array => False, Val => 16#0#);
+      --  unspecified
+      Reserved_30_31 : HAL.UInt2 := 16#0#;
+   end record
+     with Volatile_Full_Access, Size => 32,
+          Bit_Order => System.Low_Order_First;
+
+   for SMPR2_Register use record
+      SMP            at 0 range 0 .. 29;
+      Reserved_30_31 at 0 range 30 .. 31;
+   end record;
+
+   --------------------
    -- JOFR1_Register --
    --------------------
 
@@ -692,9 +792,9 @@ package STM32_SVD.ADC is
       --  control register 2
       CR2   : CR2_Register;
       --  sample time register 1
-      SMPR1 : HAL.Word;
+      SMPR1 : SMPR1_Register;
       --  sample time register 2
-      SMPR2 : HAL.Word;
+      SMPR2 : SMPR2_Register;
       --  injected channel data offset register x
       JOFR1 : JOFR1_Register;
       --  injected channel data offset register x
