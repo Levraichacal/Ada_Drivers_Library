@@ -22,7 +22,10 @@ library project STM32F40x is
       "drivers/uart_stm32f4",
       "drivers/adc",
       "drivers/dac",
-      "drivers/timer");
+      "drivers/timer",
+      "drivers/usart",
+      "drivers/pwm",
+      "drivers/rng");
 
    package Compiler renames Config.Compiler;
    package Builder renames Config.Builder;

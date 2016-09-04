@@ -22,7 +22,13 @@ library project STM32F42x is
       "drivers/dma2d",
       "drivers/i2c_stm32f4",
       "drivers/uart_stm32f4",
-      "drivers/ltdc");
+      "drivers/ltdc",
+      "drivers/usart",
+      "drivers/timer",
+      "drivers/pwm",
+      "drivers/adc",
+      "drivers/dac",
+      "drivers/rng");
 
    package Compiler renames Config.Compiler;
    package Builder renames Config.Builder;

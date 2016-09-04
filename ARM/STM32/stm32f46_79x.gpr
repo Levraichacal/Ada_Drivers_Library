@@ -25,7 +25,13 @@ library project STM32F46_79x is
       "drivers/ltdc",
       "drivers/sd",
       "drivers/sd/sdio",
-      "drivers/uart_stm32f4");
+      "drivers/uart_stm32f4",
+      "drivers/usart",
+      "drivers/timer",
+      "drivers/pwm",
+      "drivers/adc",
+      "drivers/dac",
+      "drivers/rng");
 
    package Compiler renames Config.Compiler;
    package Builder renames Config.Builder;

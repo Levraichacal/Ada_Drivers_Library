@@ -25,7 +25,13 @@ library project STM32F7x9 is
       "drivers/ltdc",
       "drivers/sai",
       "drivers/sd",
-      "drivers/sd/sdmmc");
+      "drivers/sd/sdmmc",
+      "drivers/usart",
+      "drivers/timer",
+      "drivers/pwm",
+      "drivers/adc",
+      "drivers/dac",
+      "drivers/rng");
 
    package Compiler is
       for Default_Switches ("Ada") use
